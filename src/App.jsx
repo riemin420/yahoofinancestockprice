@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [quotes, setQuotes] = useState({});
+  const [error, setError] = useState("");
+
+  const fetchQuotes = async () => {
+    try {
+      const res = await fetch("https://kokitechblog.com:8003/quotes", { mode: "cors" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      setQuotes(data);
+    } catch(err) {
+      setError(err.message);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h1>株価取得</h1>
+      <button onClick={fetchQuotes}>現在の株価を取得</button>
+      {error && <p style={{ color: "red" }}>Error: {error}</p>}
+      <ul>
+        {Object.entries(quotes).map(([t, p]) => (
+          <li key={t}>{t}: {p.toLocaleString()}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export default App
+export default App;
