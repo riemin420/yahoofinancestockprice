@@ -6,7 +6,7 @@ function App() {
 
   const fetchQuotes = async () => {
     try {
-      const res = await fetch("https://kokitechblog.com:8443/yahoofinance/quotes", { mode: "cors" });
+      const res = await fetch("https://kokitechblog.com/yahoofinance/quotes", { mode: "cors" });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       setQuotes(data);
