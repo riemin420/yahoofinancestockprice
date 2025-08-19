@@ -1,12 +1,8 @@
-# React + Vite
+# アプリ概要(ver1.3)
+- 保有株情報(日本株)の株価(終値)のグラフを表示するためのWebアプリ
+- フロント側はCloudflare R2に静的サイトホスティングをしていて、そこから自身のサーバへAPIリクエストを送信し結果をJSONで受け取る
+- グラフはセクターごとに表示し、1か月〜6か月の範囲でグラフを動的に変更することができる
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# 今後の予定
+- 当日のグラフをもう少し細かくしたい
+- 自身の保有する株の取得単価を取得する(SBI証券に公式のAPIはない)
